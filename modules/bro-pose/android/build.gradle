@@ -1,0 +1,30 @@
+plugins {
+  id 'com.android.library'
+  id 'expo-module-gradle-plugin'
+}
+
+group = 'com.judiogym.bropose'
+version = '0.1.0'
+
+android {
+  namespace "expo.modules.bropose"
+  defaultConfig {
+    versionCode 1
+    versionName '0.1.0'
+  }
+}
+
+// CameraX pide listenablefuture:1.0 (igual que expo-camera)
+configurations.configureEach {
+  resolutionStrategy.force "com.google.guava:listenablefuture:1.0"
+}
+
+dependencies {
+  def camerax_version = "1.6.0"
+  implementation "androidx.camera:camera-core:${camerax_version}"
+  implementation "androidx.camera:camera-camera2:${camerax_version}"
+  implementation "androidx.camera:camera-lifecycle:${camerax_version}"
+  implementation "androidx.camera:camera-view:${camerax_version}"
+  // ML Kit pose detection: modelo incluido en la app, corre sin internet y gratis
+  implementation "com.google.mlkit:pose-detection:18.0.0-beta5"
+}

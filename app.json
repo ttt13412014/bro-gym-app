@@ -1,0 +1,65 @@
+{
+  "expo": {
+    "name": "Bro?",
+    "slug": "judiogym",
+    "scheme": "judiogym",
+    "version": "0.2.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "automatic",
+    "backgroundColor": "#0A0A0A",
+    "ios": {
+      "bundleIdentifier": "com.judiogym.app",
+      "supportsTablet": false
+    },
+    "android": {
+      "package": "com.judiogym.app",
+      "versionCode": 3,
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#0A0A0A"
+      }
+    },
+    "plugins": [
+      "expo-router",
+      "expo-font",
+      [
+        "expo-splash-screen",
+        {
+          "backgroundColor": "#0A0A0A",
+          "imageWidth": 120
+        }
+      ],
+      "expo-status-bar",
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Bro? usa la cámara para leer códigos de barras y, en Modo cámara, para contar tus repeticiones. Todo se procesa en el teléfono: no se guardan ni se suben imágenes.",
+          "recordAudioAndroid": false
+        }
+      ],
+      [
+        "expo-notifications",
+        {
+          "color": "#0A0A0A"
+        }
+      ]
+    ],
+    "experiments": {
+      "typedRoutes": true
+    },
+    "extra": {
+      "eas": {
+        "projectId": "94676177-77c3-453f-9bc0-dcd07896f42c"
+      }
+    },
+    "owner": "bro-gym-app",
+    "updates": {
+      "url": "https://u.expo.dev/94676177-77c3-453f-9bc0-dcd07896f42c",
+      "requestHeaders": {
+        "expo-channel-name": "production"
+      }
+    },
+    "runtimeVersion": "0.2.0",
+    "icon": "./assets/icon.png"
+  }
+}

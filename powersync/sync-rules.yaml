@@ -1,0 +1,39 @@
+# Bro? · PowerSync sync rules
+# Pegar en el dashboard de PowerSync (Sync Rules).
+# Auth: Supabase JWT (habilitar "Supabase Auth" en la instancia).
+bucket_definitions:
+  # Catálogo global, solo lectura
+  catalogo:
+    data:
+      - SELECT * FROM exercises WHERE owner_id IS NULL
+      - SELECT * FROM methods
+      - SELECT * FROM techniques
+      - SELECT * FROM method_templates
+      - SELECT * FROM template_blocks
+      - SELECT exercise_id || '_' || substitute_id AS id, * FROM exercise_substitutes
+      - SELECT goal AS id, * FROM builder_goal_rules
+      - SELECT slug AS id, * FROM strength_levels
+      - SELECT * FROM strength_standards
+
+  # Datos de cada usuario
+  usuario:
+    parameters: SELECT request.user_id() AS user_id
+    data:
+      - SELECT * FROM exercises WHERE owner_id = bucket.user_id
+      - SELECT user_id AS id, * FROM user_settings WHERE user_id = bucket.user_id
+      - SELECT * FROM user_exercise_maxes WHERE user_id = bucket.user_id
+      - SELECT * FROM user_strength_levels WHERE user_id = bucket.user_id
+      - SELECT * FROM user_routines WHERE user_id = bucket.user_id
+      - SELECT * FROM user_routine_days WHERE user_id = bucket.user_id
+      - SELECT * FROM user_routine_blocks WHERE user_id = bucket.user_id
+      - SELECT * FROM plans WHERE user_id = bucket.user_id
+      - SELECT * FROM plan_weeks WHERE user_id = bucket.user_id
+      - SELECT * FROM user_progression_state WHERE user_id = bucket.user_id
+      - SELECT * FROM workout_sessions WHERE user_id = bucket.user_id
+      - SELECT * FROM workout_sets WHERE user_id = bucket.user_id
+      - SELECT * FROM body_measurements WHERE user_id = bucket.user_id
+      - SELECT * FROM foods WHERE owner_id = bucket.user_id
+      - SELECT user_id AS id, * FROM nutrition_profiles WHERE user_id = bucket.user_id
+      - SELECT * FROM nutrition_targets WHERE user_id = bucket.user_id
+      - SELECT * FROM food_logs WHERE user_id = bucket.user_id
+      - SELECT * FROM weekly_checkins WHERE user_id = bucket.user_id
